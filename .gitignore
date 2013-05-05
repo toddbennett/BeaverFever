@@ -161,3 +161,7 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+BeaverFever.sln
+BeaverFever.vcxproj
+BeaverFever.vcxproj.filters

@@ -6,11 +6,30 @@
  * Original work, do not steal
  */
 
+#include <stdio.h>
 #include <Windows.h>
 
 const char className[] = "beaverfeverwinclass";
 
 WNDCLASSEX winclass;
+
+char *getLastErrorString()
+{
+	DWORD errorCode = GetLastError();
+	LPTSTR errorString;
+
+	FormatMessage(
+		FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
+		NULL,
+		errorCode,
+		0,
+		(LPTSTR) &errorString, // not a bug
+		0,
+		NULL
+	);
+
+	return errorString;
+}
 
 LRESULT CALLBACK WndProc(
 	HWND hwnd,		// handle to window
@@ -56,11 +75,11 @@ void init_winclass(HINSTANCE hInstance)
 /**
  * This is our entry point because LOL windoze. I hope you're happy!
  */
-int CALLBACK WinMain(
+int WINAPI WinMain(
 	HINSTANCE	hInstance,		// handle to instance of application
 	HINSTANCE	hPrevInstance,	// DEPRECATED
 	LPSTR		lpCmdLine,		// cmd args
-	int			nCmdShow		// Google winmain to learn all about this on
+	int			nShowCmd		// Google winmain to learn all about this on
 								// MSDN. we should deal with it eventually.
 								// It's a bunch of display hints.
 )
@@ -74,8 +93,7 @@ int CALLBACK WinMain(
 	init_winclass(hInstance);
 	winclassatom = RegisterClassEx(&winclass);
 	if (!winclassatom) {
-		MessageBox(NULL, "Could not register winclass!",
-			"winclass registration error", MB_ICONSTOP);
+		printf(getLastErrorString());
 		return 1;
 	}
 	
@@ -94,12 +112,11 @@ int CALLBACK WinMain(
 		NULL
 	);
 	if (!window) {
-		MessageBox(NULL, "Could not create window!",
-			"Window creation error", MB_ICONSTOP);
+		printf(getLastErrorString());
 		return 1;
 	}
 	
-	ShowWindow(window, nCmdShow);
+	ShowWindow(window, nShowCmd);
     UpdateWindow(window);
 
     while (1) {
@@ -110,8 +127,7 @@ int CALLBACK WinMain(
 			break;
 		}
 		if (test == -1) {
-			MessageBox(NULL, "ERROR ERROR ERROR ERROR ERROR",
-				"I MUST BE COMPLETE", MB_ICONSTOP);
+			char *s = getLastErrorString();
 			return 1;
 		}
 		else {
