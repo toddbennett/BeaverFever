@@ -8,10 +8,31 @@
 
 #include <stdio.h>
 #include <Windows.h>
+#include <d3d11.h>
 
 const char className[] = "beaverfeverwinclass";
 
 WNDCLASSEX winclass;
+
+/**
+ * Everything that should be done "at the beginning", before the message loop.
+ */
+void init(void)
+{
+	DXGI_SWAP_CHAIN_DESC mySwapChainDesc;
+	mySwapChainDesc = {};
+	mySwapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+
+	D3D11CreateDeviceAndSwapChain(
+		NULL,
+		D3D_DRIVER_TYPE_HARDWARE,
+		NULL,
+		0,
+		NULL,
+		6,
+		D3D11_SDK_VERSION
+	);
+}
 
 char *getLastErrorString()
 {
@@ -118,6 +139,8 @@ int WINAPI WinMain(
 	
 	ShowWindow(window, nShowCmd);
     UpdateWindow(window);
+
+	init();
 
     while (1) {
 		BOOL test;	// Why the fuck did Micro$haft make this a BOOL when
