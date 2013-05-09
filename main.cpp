@@ -30,11 +30,11 @@ int d3d_init(
 
 	*d3d = Direct3DCreate9(D3D_SDK_VERSION);
 	if (*d3d == NULL) {
-		return 1;
+		return 0;
 	}
-
 	params.Windowed = TRUE;
-
+	params.SwapEffect = D3DSWAPEFFECT_DISCARD;
+	params.hDeviceWindow = window;
 	result = (*d3d)->CreateDevice(
 		D3DADAPTER_DEFAULT,
 		D3DDEVTYPE_HAL,
