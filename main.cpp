@@ -8,30 +8,46 @@
 
 #include <stdio.h>
 #include <Windows.h>
-#include <d3d11.h>
+#include <D3D9.h>
 
 const char className[] = "beaverfeverwinclass";
 
 WNDCLASSEX winclass;
 
 /**
- * Everything that should be done "at the beginning", before the message loop.
+ * d3d_init
+ *
+ * Initializes Direct3D 9, specifically an IDirect3D9 and an IDirect3DDevice9
  */
-void init(void)
+int d3d_init(
+	IDirect3D9 **d3d,				// OUT
+	HWND window,					// IN
+	IDirect3DDevice9 **d3dDevice	// OUT
+	)
 {
-	DXGI_SWAP_CHAIN_DESC mySwapChainDesc;
-	mySwapChainDesc = {};
-	mySwapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	HRESULT result = 0;
+	D3DPRESENT_PARAMETERS params = {};
 
-	D3D11CreateDeviceAndSwapChain(
-		NULL,
-		D3D_DRIVER_TYPE_HARDWARE,
-		NULL,
-		0,
-		NULL,
-		6,
-		D3D11_SDK_VERSION
-	);
+	*d3d = Direct3DCreate9(D3D_SDK_VERSION);
+	if (*d3d == NULL) {
+		return 1;
+	}
+
+	params.Windowed = TRUE;
+
+	result = (*d3d)->CreateDevice(
+		D3DADAPTER_DEFAULT,
+		D3DDEVTYPE_HAL,
+		window,
+		D3DCREATE_MIXED_VERTEXPROCESSING,
+		&params,
+		d3dDevice
+		);
+	if (result != D3D_OK) {
+		return 1;
+	}
+
+	return 0;
 }
 
 char *getLastErrorString()
@@ -94,6 +110,28 @@ void init_winclass(HINSTANCE hInstance)
 }
 
 /**
+ * Draws some stuff every time? Maybe a cube?
+ *
+ * Returns 1 at the first sign of a problem, 0 otherwise.
+ */
+int d3d_draw_test(IDirect3DDevice9 *d3dDevice)
+{
+	if (d3dDevice->BeginScene()) {
+		return 1;
+	}
+
+	if (d3dDevice->EndScene()) {
+		return 1;
+	}
+
+	if (d3dDevice->Present(NULL, NULL, NULL, NULL)) {
+		return 1;
+	}
+
+	return 0;
+}
+
+/**
  * This is our entry point because LOL windoze. I hope you're happy!
  */
 int WINAPI WinMain(
@@ -108,6 +146,9 @@ int WINAPI WinMain(
 	ATOM winclassatom;
 	HWND window;
 	MSG message;
+
+	IDirect3D9 *d3d;
+	IDirect3DDevice9 *d3dDevice;
 
 	// Set up our window class WHY IS THIS SO MUCH WORK
 	// I DON'T EVEN KNOW WHAT A WINDOW CLASS IS
@@ -133,18 +174,22 @@ int WINAPI WinMain(
 		NULL
 	);
 	if (!window) {
-		printf(getLastErrorString());
+		MessageBox(NULL, "CreateWindowEx failed!", NULL, NULL);
 		return 1;
 	}
 	
 	ShowWindow(window, nShowCmd);
     UpdateWindow(window);
 
-	init();
+	if (d3d_init(&d3d, window, &d3dDevice)) {
+		MessageBox(NULL, "d3d_init failed!", NULL, NULL);
+		return 1;
+	}
 
     while (1) {
 		BOOL test;	// Why the fuck did Micro$haft make this a BOOL when
 					// it can be a bunch of different values what the hell
+		d3d_draw_test(d3dDevice);
 		test = GetMessage(&message, window, 0, 0);
 		if (test == 0) {
 			break;
