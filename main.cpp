@@ -131,9 +131,10 @@ int WINAPI WinMain(
 	HWND window;
 	MSG message;
 	BOOL test;
-
+	HRESULT result;
 	IDirect3D9 *d3d;
 	IDirect3DDevice9 *d3dDevice;
+	IDirect3DVertexBuffer9 *d3dVertexBuffer;
 
 	ZeroMemory(&wndClass, sizeof(wndClass));
 	wndClass.lpfnWndProc = wndProc;
@@ -165,6 +166,19 @@ int WINAPI WinMain(
 
 	if (d3d_init(&d3d, window, &d3dDevice)) {
 		MessageBox(NULL, "d3d_init failed!", NULL, NULL);
+		return 1;
+	}
+
+	result = d3dDevice->CreateVertexBuffer(
+		1024,
+		0,
+		0,
+		D3DPOOL_DEFAULT,
+		&d3dVertexBuffer,
+		NULL
+	);
+	if (result) {
+		MessageBox(NULL, getLastErrorString(), "CreateVertexBuffer Error", NULL);
 		return 1;
 	}
 
