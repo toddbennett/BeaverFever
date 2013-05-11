@@ -30,7 +30,7 @@ int d3d_init(
 
 	*d3d = Direct3DCreate9(D3D_SDK_VERSION);
 	if (*d3d == NULL) {
-		return 0;
+		return 1;
 	}
 	params.Windowed = TRUE;
 	params.SwapEffect = D3DSWAPEFFECT_DISCARD;
