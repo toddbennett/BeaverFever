@@ -1,0 +1,66 @@
+Outline for Beaver Fever - A Chews Your Own Adventure
+
+This is basically a repository for all the creative we've done so far. In the future this may serve as a sort of checklist for things that need to be added to the game. Feel free to add, remove or edit things at your leisure
+
+LEVELS LIST
+
+Tutorial Level : Beaver Dam
+Probably a bunch of beavers sitting around telling you about the story and a bunch of shitty stock "You mean you can't remember how to tail slam? Just press X ya big dummy!" type dialogue. Maybe stuff is caved in or something and you have to use all of your moves fixing stuff before you can leave. Also potentially where shops would be if we have any.
+
+Level One : The Forest
+Pretty lame generic forest level. Probably where you learn to chop down trees. At this point in the game there is probably almost no influence from the development, but you should be able to see it in the distance for the sake of atmosphere. Maybe a plume of smoke or something. Enemies would probably be hunters and maybe "evil" animals like piranna and bears or whatever.
+Lemmings puzzle would probably be in here somewhere. I'm thinking you're guiding a line of young lemmings through a feild of bear traps and other obstacles to their parents at the other end. Could also be swung that thay are hidden all over the level and you have to guide them back one at a time. Probably without the bear traps.
+If we choose to have our "Gary" hunter character, we could swing it that at this point in the game, he is still your main enemy and after you defeat him the first time you learn about the resort and get a sort of "delayed start screen" and embark on your real quest.
+
+Level Two: The Rivers
+Water temple-esque river level where you are building dams to open and close waterways. Dam-building ability is probably learned here.
+I want to have some sort of puzzle where you cut down trees into a river and they form a log bridge downstream. Probably here. Maybe you have to steer them by damming the waterways.
+
+Level Three : The Grand Tree
+I'm less sold on this level, but maybe some sort of climbing a huge tree to talk with the "Forest Elders". Would probably learn ledge grab here or maybe some sort of "Branch Swing Jump" like in Goemon's Great Adventure.
+Probably some sort of woodpecker-tunnel-digging puzzle. Needs fleshing.
+This would be another good place for a battle with Gary. Invoke the cliche of fighting on the roof of a skyscraper but instead it's on top of a tree. We could do the classic knockback style boss fight where you're trying to push him off the edge with repeated attacks.
+From the top of this tree you get your first real glimpse of the resort and of all the construction. If we don't do it in the forest then we could also do the "True quest" cinematic here.
+If we don't want Gary as the boss here, we could do that the "Forest Elder" doesn't think we should do anything about the resort or that he thinks they'll be safe in the treetops or something. So then HE becomes the boss or his henchman or something. Afterwards he is convinced, but he is injured or dead and sends you to deal with it instead. Maybe some other animals say they will help and they become shops or recurring missions in later levels, or maybe it's a Kirby's Crystal Shards situation where they help you in small ways.
+
+As big and fleshed out as this looks, I'm not married to it and we can do something else if we think of it.
+
+Level four : Forest 2 / Logging operation
+Similar to forest, but it's all being cut down. Lots of lumberjacks and bulldozers.
+Probably a mission where you destroy all the bulldozers
+Lumberjacks get their axes stuck in trees and you go around and hit them from behind
+Miniboss is a big Paul Bunyan lumberjack with a huge axe or a chainsaw. You push trees down on top of him after he's damaged them.
+
+Level Five : Building frame/Construction
+
+The main feature of this level is a big half-finished building. Lots of cutting down wooden beams to make bridges and ramps. Tightrope puzzles.
+Live wires could be an obstacle here, especially after you've destroyed parts of the building.
+If we don't implement it alongside dam building, this could be a good place to learn the carry things with your tail ability. Piles of bricks and pieces of wood etc.
+Could also be a good place to learn the mud sling ability for picking off enemies on the higher parts of the structure.
+
+Level Six : The Sawmill
+Pretty much writes itself. Saws. Conveyor belts. Maybe like tied up piles of wood you could gnaw loose to take out large groups of enemies
+Probably where we put our multi-hit boss because of all the stuff we have to work with in a sawmill. He could be a giant tree-chopping mech like in Warcraft 3.
+Conveyor belt puzzle. Nuff said
+Something where you put a log through different cutting blades to make a certain shape for a key.
+Maybe a flickering lights area? Those are cool.
+
+Level Seven : Gain entry to the resort
+Maybe have one of these? or maybe you just get in
+
+Level Seven-A : Casino
+Casino levels rock. Maybe your goal here is to gather money so you can get a room and therefore a room key to get around the hotel. We could go the "Coins on the floor everywhere and also maybe destroy slot machines" route or maybe you're doing missions for gamblers like mixing them a complicated drink out of hidden ingredients or helping the cheat at a game.
+
+You only need maybe 70% of the possible coins to move on, but with 100% you get into the high roller room which has bonus stuff
+
+Level eight : The main hotel
+Probably a big pool area. A kitchen and a dining room. Maybe a hallway with three or four rooms. Lots we could do here
+Cinema room with all the cool movie levels we talked about. Maybe as a hidden bonus
+
+Level Nine : Penthouse
+Probably just an epic boss level. mostly fighting I would say, maybe the return of a couple badly wounded henchmen from previous levels. Big boss is maybe just a generic fat executive but there's lots of room for a twist ending here as we can be always showing him from behind in a chair up to this point.
+Probably after you beat him the first time you fight him on the roof and he's in a helicopter.
+
+
+
+This is not a comprehensive list by any means, just something to play with. Hopefully GitHub will show the changes for txt files the same way it does for everything else so we can see the new ideas right away.
