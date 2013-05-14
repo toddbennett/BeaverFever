@@ -9,34 +9,18 @@
 #include <stdio.h>
 #include <Windows.h>
 #include <D3D9.h>
-#include <math.h>
 
+#include "Baxter.h"
+
+// You're right, we need these here...
+// Why are these not defined in Windows.h?
 #define VK_A 0x0041
 #define VK_D 0x0044
 #define VK_S 0x0053
 #define VK_W 0x0057
 
+Baxter *bax; //Create pointer to instance of Baxter named bax
 
-// Baxter structure. this should be put in a header or something depending on how you want to do it
-struct Baxter{
-float x,y,z;  //coordinates in 3d space
-float facing; //angle of facing in radians. could also do degrees if you prefer. 0 is right along the y-axis
-void init() //funtion that initializes all of Baxter's variables to 0 just in case
-{
-	x=0;
-	y=0;
-	z=0;
-	facing=0;
-}
-void move(float distance)//function that moves Baxter with facing. distance should be passed in as a speed variable. Negative value denotes moving backwards
-{
-	x = x + distance*sin(facing);
-	y = y + distance*cos(facing);
-}
-//obviously more variables later
-};
-
-Baxter *Bax; //Create pointer to instance of Baxter named Bax
 /**
  * d3d_init
  *
@@ -118,13 +102,13 @@ LRESULT CALLBACK wndProc(
 		switch (wParam)
 	{
 		case VK_A:
-			Bax->facing -= 0.1;
+			bax->turn(-0.1);
 		case VK_D:
-			Bax->facing += 0.1;
+			bax->turn(0.1);
 		case VK_W:
-			Bax->move(0.5);
+			bax->move(0.5);
 		case VK_S:
-			Bax->move(-0.3);
+			bax->move(-0.3);
 	}
 		return 0;
 	default:
@@ -176,7 +160,7 @@ int WINAPI WinMain(
 	IDirect3DVertexBuffer9 *d3dVertexBuffer;
 	IDirect3DVertexShader9 *pShader;
 
-	Bax->init();
+	bax = new Baxter();
 	ZeroMemory(&wndClass, sizeof(wndClass));
 	wndClass.lpfnWndProc = wndProc;
 	wndClass.hInstance = hInstance;
