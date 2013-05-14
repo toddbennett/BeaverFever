@@ -62,5 +62,10 @@ Probably just an epic boss level. mostly fighting I would say, maybe the return 
 Probably after you beat him the first time you fight him on the roof and he's in a helicopter.
 
 
+CHARACTERS
+Baxter B. Beaver
+Our hero. Probably plucky, no-nonsense and plays by his own rules.
+
+
 
 This is not a comprehensive list by any means, just something to play with. Hopefully GitHub will show the changes for txt files the same way it does for everything else so we can see the new ideas right away.
