@@ -1,0 +1,19 @@
+The Beaver Dam
+The setting is early spring, in 'Meadowlark forest'
+The animals are just waking up from hibernation, but our hero is sleeping in!
+Bobbi (The girlfriend. Probably not named Bobbi) wakes you up
+	You start out staring at the ceiling. Turning to look at Bobbi is your mouse tutorial
+	Walk towards her. Walking tutorial
+	Talk to her. Talking tutorial
+	Jumping tutorial. Haven't figured it out yet
+The beavers are repairing the dam, and you help them out to learn your moves
+	Part of the roof has fallen in, and there's rubble everywhere. Use your basic attacks to break up the rubble
+	Piles of sticks or logs need to be moved across the dam. Use your taxi ability to move them
+	Holes in the floor are being patched up. Use the tail slam to pat down the mud
+	The roof is leaking. Use the mud-slinging ability to plug the holes
+Wooden statue quest guy is also here.
+	You go around the beaver dam collecting 5 pieces of the special wood
+	They are probably just jutting out of the walls
+If you haven`t done all of the other jobs yet, he tells you it will take him a while to finish the statue
+
+After you finish all of these missions, Cinematic. You go to statue quest guy as he`s putting the finishing touch on the statue. Suddenly someone runs in and announces that Gary the hunter is back! Segway into level 1
