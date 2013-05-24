@@ -18,6 +18,31 @@
 #define VK_D 0x0044
 #define VK_S 0x0053
 #define VK_W 0x0057
+#define gravity f0.01 //Define gravity as a universal constant so it's easy to tweak later
+
+
+#define CUSTOMFVF (D3DFVF_XYZRHW | D3DFVF_DIFFUSE)
+//This apparently defines what information we want to pass through to the hardware, so as not to waste time
+//D3DFVF_XYZRHW passes xyz geometry coordinates plus information for converting to screen coordinates. D3DFVF_DIFFUSE passes a color for diffuse lighting
+//Eventually we will define different formats with D3DFVF_TEX0 which is for textured models
+struct CUSTOMVERTEX //This is the type we set up structured the same way as we defined in CUSTOMFVF
+{
+float x,y,z,rhw;
+DWORD color;
+};
+
+CUSTOMVERTEX Cube[] =
+{
+        { 320.0f, 50.0f, 0.5f, 1.0f, D3DCOLOR_XRGB(0, 0, 255), },
+		{ 520.0f, 400.0f, 0.5f, 1.0f, D3DCOLOR_XRGB(0, 255, 0), },
+		{ 120.0f, 400.0f, 0.5f, 1.0f, D3DCOLOR_XRGB(255, 0, 0), },
+};
+
+//Don't really know what's up with the commas there, but it seems to work
+
+
+
+
 
 Baxter *bax; //Create pointer to instance of Baxter named bax
 
@@ -92,6 +117,7 @@ LRESULT CALLBACK wndProc(
 	LPARAM lParam	// more parameters to message
 )
 {
+
 	switch (uMsg) {
 	case WM_QUIT:
 		return DestroyWindow(hWnd);
@@ -121,12 +147,14 @@ LRESULT CALLBACK wndProc(
  *
  * Returns 1 at the first sign of a problem, 0 otherwise.
  */
-int d3d_draw_test(IDirect3DDevice9 *d3dDevice)
+int d3d_draw_test(IDirect3DDevice9 *d3dDevice, IDirect3DVertexBuffer9 *d3dVertexBuffer)
 {
 	if (d3dDevice->BeginScene()) {
 		return 1;
 	}
-
+	d3dDevice->SetFVF(CUSTOMFVF);
+	d3dDevice->SetStreamSource(0,d3dVertexBuffer,0,sizeof(CUSTOMVERTEX));
+	d3dDevice->DrawPrimitive(D3DPT_TRIANGLELIST ,0,1);
 	if (d3dDevice->EndScene()) {
 		return 1;
 	}
@@ -206,10 +234,13 @@ int WINAPI WinMain(
 		MessageBox(NULL, getLastErrorString(), "CreateVertexBuffer Error", NULL);
 		return 1;
 	}
-
-
+	//Put our cube on the vertex buffer
+	VOID* pVoid; //This is a pointer to an undefined space I guess? The tutorial told me I needed one
+	d3dVertexBuffer->Lock(0,0,(void**)&pVoid, 0);
+	memcpy(pVoid,Cube,sizeof(Cube));
+	d3dVertexBuffer->Unlock();
     while ((test = GetMessage(&message, NULL, 0, 0)) != 0) {
-		if (d3d_draw_test(d3dDevice)) {
+		if (d3d_draw_test(d3dDevice,d3dVertexBuffer)) {
 			MessageBox(NULL, "d3d_draw_test failed!", NULL, NULL);
 			return 1;
 		}
