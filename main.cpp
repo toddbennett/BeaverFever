@@ -11,7 +11,7 @@
 #include <D3D9.h>
 
 #include "Baxter.h"
-
+#include "Geometry.h"
 // You're right, we need these here...
 // Why are these not defined in Windows.h?
 #define VK_A 0x0041
@@ -20,25 +20,12 @@
 #define VK_W 0x0057
 #define gravity f0.01 //Define gravity as a universal constant so it's easy to tweak later
 
+//color codes for ease of use
 
 #define CUSTOMFVF (D3DFVF_XYZRHW | D3DFVF_DIFFUSE)
 //This apparently defines what information we want to pass through to the hardware, so as not to waste time
 //D3DFVF_XYZRHW passes xyz geometry coordinates plus information for converting to screen coordinates. D3DFVF_DIFFUSE passes a color for diffuse lighting
 //Eventually we will define different formats with D3DFVF_TEX0 which is for textured models
-struct CUSTOMVERTEX //This is the type we set up structured the same way as we defined in CUSTOMFVF
-{
-float x,y,z,rhw;
-DWORD color;
-};
-
-CUSTOMVERTEX Cube[] =
-{
-        { 320.0f, 50.0f, 0.5f, 1.0f, D3DCOLOR_XRGB(0, 0, 255), },
-		{ 520.0f, 400.0f, 0.5f, 1.0f, D3DCOLOR_XRGB(0, 255, 0), },
-		{ 120.0f, 400.0f, 0.5f, 1.0f, D3DCOLOR_XRGB(255, 0, 0), },
-};
-
-//Don't really know what's up with the commas there, but it seems to work
 
 
 
